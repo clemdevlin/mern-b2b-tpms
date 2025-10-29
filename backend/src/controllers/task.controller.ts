@@ -34,7 +34,14 @@ export const createTaskController = asyncHandler(
       workspaceId,
       projectId,
       userId,
-      body
+      body as {
+        title: string;
+        description?: string;
+        priority: string;
+        status: string;
+        assignedTo?: string | null;
+        dueDate?: string;
+      }
     );
 
     return res.status(HTTPSTATUS.OK).json({
@@ -61,7 +68,14 @@ export const updateTaskController = asyncHandler(
       workspaceId,
       projectId,
       taskId,
-      body
+      body as {
+        title: string;
+        description?: string;
+        priority: string;
+        status: string;
+        assignedTo?: string | null;
+        dueDate?: string;
+      }
     );
 
     return res.status(HTTPSTATUS.OK).json({

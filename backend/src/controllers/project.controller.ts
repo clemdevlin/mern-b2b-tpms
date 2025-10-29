@@ -28,7 +28,11 @@ export const createProjectController = asyncHandler(
     const { role } = await getMemberRoleInWorkspace(userId, workspaceId);
     roleGuard(role, [Permissions.CREATE_PROJECT]);
 
-    const { project } = await createProjectService(userId, workspaceId, body);
+    const { project } = await createProjectService(
+      userId,
+      workspaceId,
+      body as { emoji?: string; name: string; description?: string }
+    );
 
     return res.status(HTTPSTATUS.CREATED).json({
       message: "Project created successfully",
@@ -125,7 +129,7 @@ export const updateProjectController = asyncHandler(
     const { project } = await updateProjectService(
       workspaceId,
       projectId,
-      body
+      body as { emoji?: string; name: string; description?: string }
     );
 
     return res.status(HTTPSTATUS.OK).json({
