@@ -27,7 +27,10 @@ export const createWorkspaceController = asyncHandler(
     const body = createWorkspaceSchema.parse(req.body);
 
     const userId = req.user?._id;
-    const { workspace } = await createWorkspaceService(userId, body);
+    const { workspace } = await createWorkspaceService(
+      userId,
+      body as { name: string; description?: string }
+    );
 
     return res.status(HTTPSTATUS.CREATED).json({
       message: "Workspace created successfully",
