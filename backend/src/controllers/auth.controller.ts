@@ -1,3 +1,4 @@
+import { email } from "./../../../client/node_modules/zod/src/v4/core/regexes";
 import { NextFunction, Request, Response } from "express";
 import { asyncHandler } from "../middlewares/asyncHandler.middleware";
 import { config } from "../config/app.config";
@@ -28,7 +29,9 @@ export const registerUserController = asyncHandler(
       ...req.body,
     });
 
-    await registerUserService(body);
+    await registerUserService(
+      body as { name: string; email: string; password: string }
+    );
 
     return res.status(HTTPSTATUS.CREATED).json({
       message: "User created successfully",
