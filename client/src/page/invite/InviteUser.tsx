@@ -84,7 +84,7 @@ const InviteUser = () => {
                         <Button
                           type="submit"
                           disabled={isLoading}
-                          className="!bg-green-500 !text-white text-[23px] !h-auto"
+                          className="!bg-green-500 !text-white text-xl !h-auto"
                         >
                           {isLoading && (
                             <Loader className="!w-6 !h-6 animate-spin" />

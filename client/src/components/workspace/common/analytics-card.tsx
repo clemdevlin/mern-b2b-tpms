@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Activity, ArrowBigUp, ArrowBigDown, Loader } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Activity, ArrowBigUp, ArrowBigDown } from "lucide-react";
 
 const AnalyticsCard = (props: {
   title: string;
@@ -39,7 +40,7 @@ const AnalyticsCard = (props: {
       </CardHeader>
       <CardContent className="w-full">
         <div className="text-3xl font-bold">
-          {isLoading ? <Loader className="w-6 h-6 animate-spin" /> : value}
+          {isLoading ? <Skeleton className="w-6 h-6 animate-pulse" /> : value}
         </div>
       </CardContent>
     </Card>
