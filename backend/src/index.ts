@@ -33,15 +33,15 @@ app.use(
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
-
+app.set("trust proxy", 1);
 app.use(
   session({
     name: "session",
     keys: [config.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000,
-    secure: true,
+    secure: config.NODE_ENV === "production",
     httpOnly: true,
-    sameSite: "none",
+    sameSite: config.NODE_ENV === "production" ? "none" : "lax",
   })
 );
 
